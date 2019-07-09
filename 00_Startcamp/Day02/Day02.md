@@ -58,33 +58,142 @@ git config-global user.name "name"
 
 
 
-
+## WEB 브라우저 열기
 
 ```import webbrowser
+import webbrowser
+
 urls = [
-
-​    'www.google.com',
-
-​    'www.naver.com',
-
-​    'www.github.com'
-
+    'www.google.com',
+    'www.naver.com',
+    'www.github.com'
 ]
 
+for url in urls:
+     webbrowser.open(url)
 
 
-\# for url in urls:
-
-\#     webbrowser.open(url)
-
-
-
-
-
+i = 0
 while i < 3:
-
-​    webbrowser.open(urls[i])
-
-​    i = i + 1
+    webbrowser.open(urls[i])
+    i = i + 1
 ```
+
+
+
+
+
+## Web에서의 커뮤니케이션 방식
+
+요청 ---------주소(URL)-------------> 응답
+
+​          <---문서(HTML, XML 등)---
+
+
+
+pip = 내부에 없는 것을 외부에서 사오기?
+
+`pip install <함수명>`
+
+
+
+```import requests
+import requests
+
+response = requests.get('https://naver.com').text
+print(response)
+
+```
+
+
+
+2천줄
+
+`requests`
+
+
+
+```
+import requests
+import bs4 
+
+url = 'https://finance.naver.com/sise/'
+response = requests.get(url).text
+text = bs4.BeautifulSoup(response, 'html.parser')
+kospi = text.select_one('#KOSPI_now')
+
+print(kospi.text)
+```
+
+.text없으면 줄 수만 나옴 ex. 200
+
+bs4 : 사람이 보기엔 똑같지만, python이 보기 쉽게 만들어주는 역할
+
+
+
+* ctrl + c   > 잘못 눌렀을 경우 지금까지 과정 취소
+* ctrl / : 전체 #
+
+
+
+
+
+멜론 top50
+
+```python
+import bs4
+import requests
+
+url = 'https://www.melon.com/chart/index.htm'
+
+headers = {'User-Agent': ':)'}
+
+response = requests.get(url, headers=headers).text
+text = bs4.BeautifulSoup(response, 'html.parser')
+rows =text.select('.lst50')
+
+for row in rows:
+    rank = row.select_one('td:nth-child(2) > div > span.rank').text
+    title = row.select_one('td:nth-child(6) > div > div > div.ellipsis.rank01 > span > a').text
+    artist = row.select_one('td:nth-child(6) > div > div > div.ellipsis.rank02 > a').text
+#여러개의 값 출력 가능
+    print(rank, title, artist)
+```
+
+
+
+headers = {'User-Agent': ':)'} 
+
+* 모든 홈페이지에서 요청한다고 주는 것은 아니고, 요청이 약간의 변형이 필요한 경우가 있다.
+
+## File control
+
+
+
+```python
+lunches = {
+    #Key값       #Value값
+    #Key와 Value값을 같이 페어로 꺼내는게 포인트
+    '양자강' : '02-557-4565',
+    '김밥카페' : '02-586-4501',
+    '순남시래기' : '02-456-5486'
+}
+
+with open('lunch.csv', 'w', encoding='utf-8') as f:
+    for lunce in lunches:
+    print(lunch)
+```
+
+
+
+```python
+import csv
+
+with open('lunch.csv', 'r', encoding='utf-8') as f:
+    items = csv.reader(f)
+    for item in items:
+        print(item)
+```
+
+CSV (comma seperate value)
 
