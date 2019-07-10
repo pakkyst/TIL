@@ -1,12 +1,13 @@
 from flask import Flask, render_template
 import random
-#flask에서 Flask만 꺼냄
+# flask에서 Flask만 꺼냄
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/hi')
 def hi():
@@ -40,7 +41,6 @@ def pick_lunch(count):
 @app.route('/cube/<int:num>')
 def cube(num):
     return str(num ** 3)
-
 
 
 if __name__ == '__main__':
