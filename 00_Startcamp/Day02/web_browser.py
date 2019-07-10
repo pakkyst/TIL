@@ -6,8 +6,8 @@ urls = [
     'www.github.com'
 ]
 
-# for url in urls:
-#     webbrowser.open(url)
+for url in urls:
+     webbrowser.open(url)
 
 
 i = 0

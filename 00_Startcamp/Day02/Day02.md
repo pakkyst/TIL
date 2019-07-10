@@ -44,6 +44,10 @@ git: scm (source code manager) / vcs (version control system)
 
 #tab 누르면 파일명을 쉽게 쓸 수 있음
 
+#'touch.gitignore' : gitignore이라는 git에서 숨겨진 dic을 생성
+
+
+
 ## 내 git sign
 
 ````git
@@ -60,7 +64,7 @@ git config-global user.name "name"
 
 ## WEB 브라우저 열기
 
-```import webbrowser
+```python
 import webbrowser
 
 urls = [
@@ -91,13 +95,19 @@ while i < 3:
 
 
 
+주소로 요청을 보내고, 응답을 문서로 받음
+
+
+
 pip = 내부에 없는 것을 외부에서 사오기?
 
-`pip install <함수명>`
+`pip install <함수명>` : 내 책상 위에도, 서랍 안에도 없는 함수를 다운로드
+
+ex. pip install requests
 
 
 
-```import requests
+```python
 import requests
 
 response = requests.get('https://naver.com').text
@@ -107,13 +117,13 @@ print(response)
 
 
 
-2천줄
+#'.text'가 없으면 줄 수만 출력 ex. 200
 
-`requests`
+있으면 페이지 전체 출력
 
 
 
-```
+```python
 import requests
 import bs4 
 
@@ -125,9 +135,9 @@ kospi = text.select_one('#KOSPI_now')
 print(kospi.text)
 ```
 
-.text없으면 줄 수만 나옴 ex. 200
-
 bs4 : 사람이 보기엔 똑같지만, python이 보기 쉽게 만들어주는 역할
+
+text = bs4.BeautifulSoup(변수) : 출력될 변수인 페이지 소스를 bs에 한 번 넣어주는 것
 
 
 
@@ -197,3 +207,31 @@ with open('lunch.csv', 'r', encoding='utf-8') as f:
 
 CSV (comma seperate value)
 
+
+
+
+
+file_write
+
+```python
+lunches = {
+    '양자강' : '02-557-4565',
+    '김밥카페' : '02-586-4501',
+    '순남시래기' : '02-456-5486'
+}
+
+with open('lunch.csv', 'w', encoding='utf-8') as f:
+    f.write('식당이름, 전화번호\n')
+    for name, phone in lunches.items():
+        f.write(f'{name}, {phone}\n')
+
+# print(lunch)
+# print(lunches[lunch])
+
+# for k, v in lunches.items():
+#     print(name, phone)
+```
+
+
+
+​	
