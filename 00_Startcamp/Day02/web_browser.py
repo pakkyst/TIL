@@ -10,8 +10,8 @@ for url in urls:
      webbrowser.open(url)
 
 
-i = 0
-while i < 3:
-    webbrowser.open(urls[i])
-    i = i + 1
+# i = 0
+# while i < 3:
+#     webbrowser.open(urls[i])
+#     i = i + 1
 
